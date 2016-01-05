@@ -31,9 +31,11 @@
 	<fieldType name="text_general" class="solr.TextField" positionIncrementGap="100">
 		<analyzer>
 			<tokenizer class="solr.StandardTokenizerFactory"/>
-			<filter class="solr.LowerCaseFilterFactory"/>
-			<filter class="solr.SnowballPorterFilterFactory" language="English"/>
-			<filter class="solr.SynonymFilterFactory" synonyms="synonyms.txt" ignoreCase="true" expand="true"/>
+			<filter class="solr.ArabicNormalizationFilterFactory"/>
+			<filter class="solr.PersianNormalizationFilterFactory"/>
+			<!--<filter class="solr.LowerCaseFilterFactory"/>-->
+			<!--<filter class="solr.SnowballPorterFilterFactory" language="English"/>-->
+			<!--<filter class="solr.SynonymFilterFactory" synonyms="synonyms.txt" ignoreCase="true" expand="true"/>-->
 			<filter class="solr.StopFilterFactory" ignoreCase="true" words="stopwords.txt"/>
 		</analyzer>
 	</fieldType>
