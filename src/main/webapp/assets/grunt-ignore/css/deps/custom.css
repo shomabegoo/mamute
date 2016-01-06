@@ -226,3 +226,26 @@ a.user-name {
   width: 80%;
   margin-right: 0.5em;
 }
+
+@font-face {
+font-family: Vazir;
+src: url('../../font/Vazir.eot?v=2-beta-bugfix0');
+src: url('../../font/Vazir.eot?v=2-beta-bugfix0#iefix') format('embedded-opentype'),
+     url('../../font/Vazir.woff?v=2-beta-bugfix0') format('woff'),
+     url('../../font/Vazir.ttf?v=2-beta-bugfix0') format('truetype');
+font-weight: normal;
+}
+
+@font-face {
+font-family: Vazir;
+src: url('../../font/Vazir-Bold.eot?v=2-beta-bugfix0');
+src: url('../../font/Vazir-Bold.eot?v=2-beta-bugfix0#iefix') format('embedded-opentype'),
+     url('../../font/Vazir-Bold.woff?v=2-beta-bugfix0') format('woff'),
+     url('../../font/Vazir-Bold.ttf?v=2-beta-bugfix0') format('truetype');
+font-weight: bold;
+}
+
+
+* {
+ font-family: Vazir,Tahoma,"DejaVu Sans",helvetica,arial,freesans,sans-serif !important;
+}
