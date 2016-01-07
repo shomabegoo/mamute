@@ -15,8 +15,8 @@ public class NormalizerBrutal {
 //		if (locale != null && locale.getLanguage().equals("fa")) {
 //			return normalized.toLowerCase(Locale.ENGLISH);
 //		} else {
-		String slug = NONLATIN.matcher(normalized).replaceAll("");
-		return slug.toLowerCase(Locale.ENGLISH);
+//		String slug = NONLATIN.matcher(normalized).replaceAll("");
+		return normalized.toLowerCase(Locale.ENGLISH);
 //		}
 	}
 }
