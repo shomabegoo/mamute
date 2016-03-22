@@ -11,8 +11,9 @@ if (Globals.inHouseUploading) {
             link.css("pointer-events", "none");
             var id = link.data("attachment-id");
             $.ajax({
-                url: Globals.linkTo.getAttachment + id,
-                type: 'DELETE',
+                url: Globals.linkTo.deleteAttachment + id,
+                method: 'POST',
+                data: { _method: 'DELETE' },
                 success: function(result) {
                     $("#attachment-" + id).remove();
                     $("#input-attachment-" + id).remove();
@@ -78,7 +79,7 @@ if (Globals.inHouseUploading) {
             }
 
             FileAPI.upload({
-                url: '/attachments',
+                url: Globals.linkTo.uploadAttachment,
                 files: {file: file},
                 complete: uploadCompleted
             });
