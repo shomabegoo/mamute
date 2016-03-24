@@ -100,7 +100,11 @@ dt.data-title.ellipsis {
   float: right;
   direction: rtl;
 }
-
+.user-form{
+  width:100%;
+  text-align:right;
+  direction:rtl;
+}
 .user-area .nav {
   float: right;
 }
@@ -214,6 +218,7 @@ a.user-name {
 .message.error {
   direction: rtl;
   text-align: right;
+  font-size: 18px;
 }
 
 .related-questions span {
