@@ -16,7 +16,7 @@
 		</span>
 		<span class="footer-vraptor">
 			${t['footer.mamute.powered_by']} <a href="http://www.vraptor.org/">${t['footer.vraptor']}</a>
-			${t['footer.and']} <a href="http://www.mamute.org/">${t['footer.mamute']}</a>
+			${t['footer.and']} <a href="https://github.com/shomabegoo/shomabegoo">${t['footer.mamute']}</a>
 		</span>
 		<span class="footer-muted-message">
 		</span>
