@@ -6,6 +6,7 @@
 
 
 ## تنظیم ارسال رایانامه
+<div dir=ltr>
 
 ```
 mailer.implementation = br.com.caelum.vraptor.simplemail.DefaultMailer
@@ -20,4 +21,5 @@ vraptor.simplemail.main.username = shomabegoo.com@gmail.com
 vraptor.simplemail.main.password = password
 ```
 
+<div dir=rtl>
 برای اعمال متغیرهای مورد نیاز، به جای تغییر mamute.properties تنها کافی‌ست که environment.properties (و اگر در حالت توسعه هستید development.properties) را تغییر دهید.
