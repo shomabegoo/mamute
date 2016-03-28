@@ -20,4 +20,4 @@ vraptor.simplemail.main.username = shomabegoo.com@gmail.com
 vraptor.simplemail.main.password = password
 ```
 
-
+برای اعمال متغیرهای مورد نیاز، به جای تغییر mamute.properties تنها کافی‌ست که environment.properties (و اگر در حالت توسعه هستید development.properties) را تغییر دهید.
