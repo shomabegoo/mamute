@@ -1,4 +1,4 @@
-<html>
+<html dir=rtl>
 	<body style="font-family:arial, sans-serif; font-size:12px;">
 		<img style="margin-bottom:30px;" src="${logoUrl}" />
 

@@ -1,3 +1,4 @@
+<div dir=rtl>
 <#assign questionStyle = 'padding:0px 10px; border-bottom: 1px dotted #ccc;'>
 <#assign questionTitleStyle = 'margin: 3px 0 0'>
 <#assign linkStyle = 'text-decoration: none; color: rgb(0, 119, 204);'>
