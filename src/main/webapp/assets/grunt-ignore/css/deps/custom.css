@@ -369,3 +369,30 @@ a.how-it-works-subtitle {
 .about-faq li {
   margin-bottom: 7%;
 }
+
+
+/* list-question.less */
+.tags-usage {
+  margin-bottom: 1.5em;
+  direction: rtl;
+}
+.tags-usage .tags-item {
+  margin-bottom: .45em;
+  display: inline-block;
+  width: 49%;
+  margin-right: 0;
+  float: right;
+}
+.x {
+  float: right;
+  padding-right: .5em;
+  padding-left: 0.1em;
+}
+.usage {
+  float: right;
+}
+
+/* tags.less */
+.tag-brutal {
+  float: right;
+}

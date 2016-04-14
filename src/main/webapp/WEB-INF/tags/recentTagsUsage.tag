@@ -8,6 +8,6 @@
 </div>
 <ol class="tags-usage">
 	<c:forEach items="${tagsUsage}" var="tagUsage">
-		<li class="tags-item"><tags:tag tag="${tagUsage.tag}"/> x ${tagUsage.usage}</li>
+		<li class="tags-item"><tags:tag tag="${tagUsage.tag}"/><span class="x"> x </span><span class="usage">${tagUsage.usage}</span></li>
 	</c:forEach>
 </ol>
