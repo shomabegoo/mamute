@@ -220,11 +220,6 @@ a.user-name {
   float: right;
 }
 
-.related-questions a {
-  float: right;
-  width: 80%;
-  margin-right: 0.5em;
-}
 
 @font-face {
 font-family: Vazir;
