@@ -14,12 +14,6 @@ label {
   direction: rtl;
 }
 
-.subheader .title {
-  float: right;
-  text-align: right;
-  direction: rtl;
-}
-
 .notice {
   float: right;
   margin: 1em 0;
