@@ -254,32 +254,3 @@ font-weight: bold;
 * {
  font-family: Vazir,Tahoma,"DejaVu Sans",helvetica,arial,freesans,sans-serif !important;
 }
-
-
-
-
-/* list-question.less */
-.tags-usage {
-  margin-bottom: 1.5em;
-  direction: rtl;
-}
-.tags-usage .tags-item {
-  margin-bottom: .45em;
-  display: inline-block;
-  width: 49%;
-  margin-right: 0;
-  float: right;
-}
-.x {
-  float: right;
-  padding-right: .5em;
-  padding-left: 0.1em;
-}
-.usage {
-  float: right;
-}
-
-/* tags.less */
-.tag-brutal {
-  float: right;
-}
