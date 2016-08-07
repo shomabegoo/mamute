@@ -198,11 +198,6 @@ a.user-name {
   margin-right: .5em;
 }
 
-.ranking {
-  display: flex;
-  flex-direction: row-reverse;
-}
-
 .user-info {
   text-align: right;
   direction: rtl;
