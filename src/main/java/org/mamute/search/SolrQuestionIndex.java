@@ -77,14 +77,18 @@ public class SolrQuestionIndex implements QuestionIndex {
 
 	@Override
 	public List<Long> find(String query, int maxResults) {
-		try {
-			if (isEmpty(query)) return new ArrayList<>();
+		//TODO: Removing these line is ok?
+//		try {
+//			if (isEmpty(query)) return new ArrayList<>();
+//
+//			query = URLEncoder.encode(query.trim(), "utf-8");
+//			return query(SEARCH_QUERY.replaceAll("\\?", query), maxResults);
+//		} catch (UnsupportedEncodingException e) {
+//			throw new RuntimeException("Could not encode query " + query, e);
+//		}
 
-			query = URLEncoder.encode(query.trim(), "utf-8");
-			return query(SEARCH_QUERY.replaceAll("\\?", query), maxResults);
-		} catch (UnsupportedEncodingException e) {
-			throw new RuntimeException("Could not encode query " + query, e);
-		}
+		if (isEmpty(query)) return new ArrayList<>();
+		return query(SEARCH_QUERY.replaceAll("\\?", query), maxResults);
 	}
 
 	@Override
