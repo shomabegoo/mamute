@@ -162,11 +162,6 @@ textarea.comment-textarea {
   right: auto;
 }
 
-nav.nav.main-nav.piped-nav {
-  margin-left: 29%;
-  margin-top: 2%;
-}
-
 time.when {
   direction: rtl;
   text-align: right;

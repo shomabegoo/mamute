@@ -33,7 +33,7 @@ a.button.ask-a-question {
 	}
 
 	@media only screen and (max-width: 900px) {
-		margin-left: 3%;
+		margin-left: 0%;
 	}
 
 	.nav-items {
@@ -128,6 +128,12 @@ a.button.ask-a-question {
 
 .nav,.nav-items {
 	overflow: hidden;
+}
+
+nav.nav:nth-child(1) > ul:nth-child(1) {
+    display: flex;
+    justify-content: center;
+    flex-direction: row-reverse;
 }
 
 .nav-item {
