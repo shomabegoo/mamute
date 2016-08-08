@@ -13,14 +13,17 @@ a.button.ask-a-question {
 	display:inline-block;
 	background-color: #fff;
 	border-bottom: 1px solid #ecf3f8;
-	margin-left: 7%;
+	margin-left: 30%;
+    margin-top: 1.7%;
 
 	@media only screen and (max-width: 1330px) {
-		margin-left: 4%;
+        margin-top: 1.7%;
+		margin-left: 30%;
 	}
 
 	@media only screen and (max-width: 1270px) {
-		margin-left: 8%;
+        margin-top: 1.7%;
+		margin-left: 30%;
 	}
 
 	@media only screen and (max-width: 450px) {
@@ -29,12 +32,22 @@ a.button.ask-a-question {
 		width: 100%;
 		vertical-align: middle;
 		text-align: center;
-		margin: 0;
+		margin: 0%;
 	}
 
 	@media only screen and (max-width: 900px) {
-		margin-left: 0%;
+        margin-top: 1.7%;
+		margin-left: 30%;
 	}
+
+	@media only screen and (max-width: 490px) {
+        margin-top: 1.7%;
+    	margin-left: 30%;
+    }
+
+    @media only screen and (max-width: 450px) {
+        margin-left: 0%;
+    }
 
 	.nav-items {
 		width: 100%;
@@ -102,6 +115,8 @@ a.button.ask-a-question {
 }
 
 .piped-nav {
+
+
 	.nav-item {
 		padding: 0;
 		
@@ -128,12 +143,6 @@ a.button.ask-a-question {
 
 .nav,.nav-items {
 	overflow: hidden;
-}
-
-nav.nav:nth-child(1) > ul:nth-child(1) {
-    display: flex;
-    justify-content: center;
-    flex-direction: row-reverse;
 }
 
 .nav-item {
