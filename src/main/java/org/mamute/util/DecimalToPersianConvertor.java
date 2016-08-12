@@ -1,7 +1,10 @@
 package org.mamute.util;
 
 public class DecimalToPersianConvertor {
-    public static String decimalToPersian(String number) {
+    public static String decimalToPersian(String str) {
+        if (str == null) return "";
+        String number = str.replaceAll("[^0-9]", "");
+
         char[] arabicChars = {'٠', '١', '٢', '۳', '۴', '۵', '۶', '۷', '۸', '۹'};
         StringBuilder builder = new StringBuilder();
 
@@ -13,7 +16,7 @@ public class DecimalToPersianConvertor {
                 builder.append(number.charAt(i));
             }
         }
-        return builder.toString();
+        return str.replaceAll("[0-9]+", builder.toString());
     }
 
 }
