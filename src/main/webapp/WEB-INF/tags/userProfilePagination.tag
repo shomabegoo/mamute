@@ -6,12 +6,12 @@
 <%@attribute name="currentPage" type="java.lang.Integer" required="true"%>
 <%@attribute name="type" type="java.lang.String" required="true"%>
 <%@attribute name="order" type="java.lang.String" required="false"%>
-
+<%@ taglib prefix="fa" uri="FaUtils" %>
 
 <ul id="user-${type}" class="fixed-height">
 	<c:forEach var="post" items="${posts}">
 		<li class="ellipsis advanced-data-line">
-			<span class="counter">${post.voteCount}</span>
+			<span class="counter">${fa:toFa(post.voteCount)}</span>
 			<c:choose>
 				<c:when test="${type eq t['metas.answers_lowercase']}">
 					<tags:questionLinkFor answer="${post}"/>

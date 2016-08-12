@@ -1,3 +1,5 @@
+<%@ taglib prefix="fa" uri="FaUtils" %>
+
 <c:set var="title" value="${t['metas.profile.title']}"/>
 <c:set var="siteName" value="${t['site.name']}"/>
 
@@ -25,7 +27,7 @@
 		<div class="advanced-data-line-wrapper">
 			<tags:userProfileAdvancedData i18n="tags" list="${userProfileMainTags}" type="tags" orderOptions="false" withPagination="false">
 				<c:forEach var="tagUsage" items="${userProfileMainTags}">
-					<li class="ellipsis advanced-data-line tag-line"><span class="counter tag-usage">${tagUsage.usage}</span> <tags:tag tag="${tagUsage.tag}"/></li>
+					<li class="ellipsis advanced-data-line tag-line"><span class="counter tag-usage">${fa:toFa(tagUsage.usage)}</span> <tags:tag tag="${tagUsage.tag}"/></li>
 				</c:forEach>
 			</tags:userProfileAdvancedData>
 		</div>

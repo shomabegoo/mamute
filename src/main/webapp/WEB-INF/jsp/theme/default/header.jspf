@@ -4,6 +4,7 @@
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fa" uri="FaUtils" %>
 
 <header class="header clear">
 <c:set var="mainTags" value="${t['tags.featured']}" scope="request"/>
@@ -69,14 +70,14 @@
 										<img class="user-image menu-user-image" src="${currentUser.current.getSmallPhoto(env.get('gravatar.avatar.url'))}"/>
 									</jsp:attribute>
 									<jsp:attribute name="after">
-										<span class="reputation" >(${currentUser.current.karma})</span>
+										<span class="reputation" >(${fa:toFa(currentUser.current.karma)})</span>
 									</jsp:attribute>
 								</tags:userProfileLink>
 							</li>
 							<c:if test="${currentUser.canModerate(environmentKarma)}">
 								<li class="nav-item">
 									<a href="${linkTo[HistoryController].history}">
-										${t['moderation.link']} (${pendingForModeratorCount})
+										${t['moderation.link']} (${fa:toFa(pendingForModeratorCount)})
 									</a>
 								</li>
 							</c:if>

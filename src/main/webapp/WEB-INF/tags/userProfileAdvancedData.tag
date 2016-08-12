@@ -10,11 +10,11 @@
 <%@attribute name="withPagination" type="java.lang.Boolean" required="true" %>
 <%@attribute name="count" type="java.lang.Long" required="false" %>
 <%@attribute name="pages" type="java.lang.Long" required="false" %>
-
+<%@ taglib prefix="fa" uri="FaUtils" %>
 
 <section class="user-questions advanced-data-section">
 	<div class="subheader">
-		<h3 class="title section-title"><span class="counter">${count == null ? fn:length(list) : count}</span><tags:pluralize key="user_profile.${i18n}" count="${fn:length(list)}" /></h3>
+		<h3 class="title section-title"><span class="counter">${fa:toFa(count == null ? fn:length(list) : count)}</span><tags:pluralize key="user_profile.${i18n}" count="${fn:length(list)}" /></h3>
 		<c:if test="${orderOptions}">
 			<tags:ordersFor type="${type}" user="${selectedUser}" targetId="user-${type}"/>
 		</c:if>

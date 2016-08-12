@@ -3,6 +3,8 @@
 <%@attribute name="type" required="true" type="java.lang.String" %>
 <%@attribute name="item" type="org.mamute.model.interfaces.Votable" required="true" %>
 <%@attribute type="org.mamute.model.Vote" name="vote" required="true" %>
+<%@ taglib prefix="fa" uri="FaUtils" %>
+
 <div class="vote-container post-vote">
 	<c:set var="titleUp" value="${type}.upvote"/>
 	<a rel="nofollow" class="container requires-login requires-karma author-cant
@@ -15,7 +17,7 @@
 		      title="${t[titleUp]}">
     	up
    	</a>
-	<span class="vote-count post-vote-count">${item.voteCount}</span>
+	<span class="vote-count post-vote-count">${fa:toFa(item.voteCount)}</span>
 	<c:set var="titleDown" value="${type}.downvote"/>
 	<a rel="nofollow" class="container requires-login author-cant down-vote down-arrow
 	 		  arrow vote-option requires-karma

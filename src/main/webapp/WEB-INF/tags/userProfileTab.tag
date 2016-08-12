@@ -4,6 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@attribute name="active" required="true" type="java.lang.String"%>
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="fa" uri="FaUtils" %>
 
 <section class="basic-user-data user-data">
 	<div class="subheader">
@@ -41,7 +42,7 @@
 		
 	<div class="image-and-information">
 		<img class="user-image profile-image" src="${selectedUser.getBigPhoto(env.get('gravatar.avatar.url'))}"/>
-		<span class="karma">${selectedUser.karma}</span>
+		<span class="karma">${fa:toFa(selectedUser.karma)}</span>
 		<span>${t['user_profile.reputation']}</span>
 	</div>
 	
