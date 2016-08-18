@@ -79,12 +79,12 @@ function removeHighlight(link) {
 
 function updateCount(link, count) {
 	var voteCount = $(link).closest(".vote-container").find(".vote-count");
-	voteCount.text(count);
+	voteCount.text(count.toString().toPersianDigits());
 }
 
 function fakeUpdateIncrement(link, vote) {
 	var value;
-	var countWithoutAjax = parseInt($(link).closest(".vote-container").find(".vote-count").html());
+	var countWithoutAjax = parseInt($(link).closest(".vote-container").find(".vote-count").html().toEnglishDigits());
 	
 	if(vote == "positivo") value = countWithoutAjax + 1;
 	else value = countWithoutAjax - 1;
@@ -94,7 +94,7 @@ function fakeUpdateIncrement(link, vote) {
 
 function fakeUpdateDecrement(link, vote) {
 	var value;
-	var countWithoutAjax = parseInt($(link).closest(".vote-container").find(".vote-count").html());
+	var countWithoutAjax = parseInt($(link).closest(".vote-container").find(".vote-count").html().toEnglishDigits());
 	
 	if(vote == "positivo") value = countWithoutAjax - 1;
 	else value = countWithoutAjax + 1;
@@ -113,3 +113,23 @@ function voteRemovalSuccess(link, count) {
 	updateCount(link, count);
 }
 
+String.prototype.toEnglishDigits = function () {
+    var charCodeZero = '۰'.charCodeAt(0);
+    var v1 = parseInt(this.replace(/[۰-۹]/g, function (w) {
+        return w.charCodeAt(0) - charCodeZero;
+    }));
+
+    var charCodeZeroIndia = '٠'.charCodeAt(0);
+    var v2 = parseInt(this.replace(/[٠-٩]/g, function (w) {
+         return w.charCodeAt(0) - charCodeZeroIndia;
+    }));
+
+    return v1 | v2;
+}
+
+String.prototype.toPersianDigits = function(){
+ var id= ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
+ return this.replace(/[0-9]/g, function(w){
+  return id[+w]
+ });
+}
