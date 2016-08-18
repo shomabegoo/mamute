@@ -19,39 +19,39 @@
 
     var defaultsStrings = {
         bold: "Strong <strong> Ctrl+B",
-        boldexample: "strong text",
+        boldexample: "متن ضخیم",
 
-        italic: "Emphasis <em> Ctrl+I",
-        italicexample: "emphasized text",
+        italic: "مورّب <em> Ctrl+I",
+        italicexample: "متن مورّب",
 
-        link: "Hyperlink <a> Ctrl+L",
-        linkdescription: "enter link description here",
-        linkdialog: "<p><b>Insert Hyperlink</b></p><p>http://example.com/ \"optional title\"</p>",
+        link: "پیوند <a> Ctrl+L",
+        linkdescription: "توضیح پیوند را اینجا وارد کنید",
+        linkdialog: "<p><b>پیوند مورد نظرتان را وارد کنید</b></p><p>http://example.com/ \"عنوان اختیاری\"</p>",
 
-        quote: "Blockquote <blockquote> Ctrl+Q",
-        quoteexample: "Blockquote",
+        quote: "نقل قول <blockquote> Ctrl+Q",
+        quoteexample: "نقل قول",
 
-        code: "Code Sample <pre><code> Ctrl+K",
-        codeexample: "enter code here",
+        code: "کد <pre><code> Ctrl+K",
+        codeexample: "کد را اینجا وارد کنید.",
 
-        image: "Image <img> Ctrl+G",
-        imagedescription: "enter image description here",
+        image: "تصویر <img> Ctrl+G",
+        imagedescription: "توضیح تصویر را اینجا وارد کنید",
         imagedialog: "<p><b>Insert Image</b></p><p>http://example.com/images/diagram.jpg \"optional title\"<br><br>Need <a href='http://www.google.com/search?q=free+image+hosting' target='_blank'>free image hosting?</a></p>",
 
-        olist: "Numbered List <ol> Ctrl+O",
-        ulist: "Bulleted List <ul> Ctrl+U",
-        litem: "List item",
+        olist: "فهرست شماره‌دار <ol> Ctrl+O",
+        ulist: "فهرست بدون شماره <ul> Ctrl+U",
+        litem: "مورد",
 
-        heading: "Heading <h1>/<h2> Ctrl+H",
-        headingexample: "Heading",
+        heading: "عنوان <h1>/<h2> Ctrl+H",
+        headingexample: "عنوان",
 
-        hr: "Horizontal Rule <hr> Ctrl+R",
+        hr: "خط افقی <hr> Ctrl+R",
 
-        undo: "Undo - Ctrl+Z",
-        redo: "Redo - Ctrl+Y",
-        redomac: "Redo - Ctrl+Shift+Z",
+        undo: "واگرد - Ctrl+Z",
+        redo: "ازنو - Ctrl+Y",
+        redomac: "ازنو - Ctrl+Shift+Z",
 
-        help: "Markdown Editing Help"
+        help: "راهنمای ویرایش مارک‌دان"
     };
 
 
