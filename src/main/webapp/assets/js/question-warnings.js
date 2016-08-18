@@ -61,9 +61,9 @@ $(function() {
 		var messageClass = "description-messages";
 		messages.find("li."+messageClass).remove();
 		var illegalWords = ["kkk", "vc", "!!", "??", "..."];
-		validateRule(description.toUpperCase() == description && description.length > 1, 
-				Messages.get('validation.avoid_only_uppercase_title'), 
-				messageClass);
+//		validateRule(description.toUpperCase() == description && description.length > 1,
+//				Messages.get('validation.avoid_only_uppercase_title'),
+//				messageClass);
 		validateRule(containsIllegalWords(description, illegalWords), 
 				Messages.get('validation.make_clear_post'), 
 				messageClass);
