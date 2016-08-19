@@ -76,7 +76,7 @@
 							</li>
 							<c:if test="${currentUser.canModerate(environmentKarma)}">
 								<li class="nav-item">
-									<a href="${linkTo[HistoryController].history}">
+									<a href="${linkTo[HistoryController].history}" style="display: block;direction: rtl;">
 										${t['moderation.link']} (${fa:toFa(pendingForModeratorCount)})
 									</a>
 								</li>
