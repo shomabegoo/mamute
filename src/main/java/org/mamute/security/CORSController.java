@@ -13,7 +13,7 @@ import javax.inject.Inject;
 /**
  * Created by felipeweb on 2/12/16.
  */
-@Controller
+//@Controller //TODO(milad): How to enable CORSController without problem?
 public class CORSController {
 	private final Result result;
 	private final Router router;
