@@ -10,6 +10,10 @@
 </div>
 <ol class="tags-usage">
 	<c:forEach items="${tagsUsage}" var="tagUsage">
-		<li class="tags-item"><tags:tag tag="${tagUsage.tag}"/><span class="x"> x </span><span class="usage">${fa:toFa( tagUsage.usage )}</span></li>
+		<li class="tags-item">
+		    <span class="usage">${fa:toFa( tagUsage.usage )}</span>
+		    <span class="x"> x </span>
+		    <tags:tag tag="${tagUsage.tag}"/>
+		</li>
 	</c:forEach>
 </ol>
