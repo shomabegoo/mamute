@@ -1,3 +1,4 @@
+<%@ page language="java" pageEncoding="UTF-8"%>
 <c:set var="title" value="${t['not_found.title']}"/>
 <c:set var="genericTitle" value="${t['metas.generic.title'].args(siteName)}"/>
 
@@ -17,5 +18,5 @@
 	</ul>
 </div>
 <div class="error-code">
-	404
+	۴۰۴
 </div>

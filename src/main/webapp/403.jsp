@@ -1,4 +1,5 @@
- <c:set var="title" value="${t['metas.unauthorized.title']}"/>
+<%@ page language="java" pageEncoding="UTF-8"%>
+<c:set var="title" value="${t['metas.unauthorized.title']}"/>
 <c:set var="genericTitle" value="${t['metas.generic.title'].args(siteName)}"/>
 
 <tags:header title="${genericTitle} - ${title}"/>
@@ -18,5 +19,5 @@
 	</p>
 </div>
 <div class="error-code">
-	403
+	۴۰۳
 </div>
