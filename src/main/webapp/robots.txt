@@ -1,2 +1,8 @@
 User-agent: *
 Disallow: /perguntas?p=*?p=*
+Disallow: /unanswered
+Disallow: /ranking
+Disallow: /ask
+Disallow: /top
+Disallow: /logout
+Disallow: /unsolved
