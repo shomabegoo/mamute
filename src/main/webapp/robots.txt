@@ -6,3 +6,4 @@ Disallow: /ask
 Disallow: /top
 Disallow: /logout
 Disallow: /unsolved
+Disallow: /*/history
