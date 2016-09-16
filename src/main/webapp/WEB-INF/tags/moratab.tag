@@ -15,8 +15,8 @@
     <c:set var="name" value="description"/>
 </c:if>
 <!-- build:css /css/moratab.css -->
-<link type="text/css" rel="stylesheet" href="../../css/deps/font-awesome/css/font-awesome.min.css">
-<link type="text/css" rel="stylesheet" href="../../css/deps/moratab/editor.css">
+<link type="text/css" rel="stylesheet" href="/css/deps/font-awesome/css/font-awesome.min.css">
+<link type="text/css" rel="stylesheet" href="/css/deps/moratab/editor.css">
 <!-- endbuild -->
 
 <!-- build:js /js/moratab.js -->
