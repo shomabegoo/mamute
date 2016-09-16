@@ -65,7 +65,7 @@
 
 <div class="wmd">
     <div class="wmd-panel">
-        <div id="wmd-button-bar"></div>
+        <%--<div id="wmd-button-bar"></div>--%>
         <img id="image-editor-preview" alt="Preview" style="display: none">
         <textarea id="hiddentextarea" class="${htmlClass} hintable wmd-input" id="wmd-input"
                   placeholder="${placeholder}"
