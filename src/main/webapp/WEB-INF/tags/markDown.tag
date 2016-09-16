@@ -21,7 +21,7 @@
 		<img id="image-editor-preview" alt="Preview" style="display: none">
 		<textarea class="${htmlClass} hintable wmd-input" id="wmd-input"
 			placeholder="${placeholder}"
-			data-hint-id="${hintId}" 
+			data-hint-id="${hintId}"
 			minlength="${minlength}"
 			maxlength="${maxlength}"
 			name="${name}"><c:out value="${value}" escapeXml="true"/></textarea>

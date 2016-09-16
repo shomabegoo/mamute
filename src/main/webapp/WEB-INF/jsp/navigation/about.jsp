@@ -1,3 +1,4 @@
+<%@ taglib prefix="fa" uri="FaUtils" %>
 <c:set var="title" value="${t['metas.about.title']}"/>
 <c:set var="siteName" value="${t['site.name']}"/>
 
@@ -20,28 +21,28 @@
 	<div class="big-text">
 		<ul class="rules-list">
 			<li>
-				${t['about.reputation.upvote'].args(VOTE_UP)}
+				${t['about.reputation.upvote'].args(fa:toFa(VOTE_UP))}
 			</li>
 			<li>
-				${t['about.reputation.flag'].args(CREATE_FLAG)}
+				${t['about.reputation.flag'].args(fa:toFa(CREATE_FLAG))}
 			</li>
 			<li>
-				${t['about.reputation.edit.question'].args(EDIT_QUESTION)}
+				${t['about.reputation.edit.question'].args(fa:toFa(EDIT_QUESTION))}
 			</li>
 			<li>
-				${t['about.reputation.edit.answer'].args(EDIT_ANSWER)}
+				${t['about.reputation.edit.answer'].args(fa:toFa(EDIT_ANSWER))}
 			</li>
 			<li>
-				${t['about.reputation.answer_own_question'].args(ANSWER_OWN_QUESTION)}
+				${t['about.reputation.answer_own_question'].args(fa:toFa(ANSWER_OWN_QUESTION))}
 			</li>
 			<li>
-				${t['about.reputation.downvote'].args(VOTE_DOWN)}
+				${t['about.reputation.downvote'].args(fa:toFa(VOTE_DOWN))}
 			</li>
 			<li>
-				${t['about.reputation.moderate'].args(MODERATE_EDITS)}
+				${t['about.reputation.moderate'].args(fa:toFa(MODERATE_EDITS))}
 			</li>
 			<li>
-				${t['about.reputation.interact_inactive_question'].args(INACTIVE_QUESTION)}
+				${t['about.reputation.interact_inactive_question'].args(fa:toFa(INACTIVE_QUESTION))}
 			</li>
 		</ul>
 	</div><!-- big-text -->
@@ -52,34 +53,34 @@
 	<div class="big-text">
 		<ul class="rules-list">
 			<li>
-				${t['about.reputation.gain.answer.solution'].args(SOLUTION_AUTHOR)}
+				${t['about.reputation.gain.answer.solution'].args(fa:toFa(SOLUTION_AUTHOR))}
 			</li>
 			<li>
-				${t['about.reputation.gain.answer.voted_up'].args(MY_ANSWER_VOTED_UP)}
+				${t['about.reputation.gain.answer.voted_up'].args(fa:toFa(MY_ANSWER_VOTED_UP))}
 			</li>
 			<li>
-				${t['about.reputation.gain.question.voted_up'].args(MY_QUESTION_VOTED_UP)}
+				${t['about.reputation.gain.question.voted_up'].args(fa:toFa(MY_QUESTION_VOTED_UP))}
 			</li>
 			<li>
-				${t['about.reputation.gain.question.solution'].args(SOLVED_QUESTION_AUTHOR)}
+				${t['about.reputation.gain.question.solution'].args(fa:toFa(SOLVED_QUESTION_AUTHOR))}
 			</li>
 			<li>
-				${t['about.reputation.gain.question.answered'].args(ANSWERED_QUESTION)}
+				${t['about.reputation.gain.question.answered'].args(fa:toFa(ANSWERED_QUESTION))}
 			</li>
 			<li>
-				${t['about.reputation.gain.question.asked'].args(ASKED_QUESTION)}
+				${t['about.reputation.gain.question.asked'].args(fa:toFa(ASKED_QUESTION))}
 			</li>
 			<li>
-				${t['about.reputation.gain.approved_edit'].args(APPROVED_INFORMATION)}
+				${t['about.reputation.gain.approved_edit'].args(fa:toFa(APPROVED_INFORMATION))}
 			</li>
 			<li>
-				${t['about.reputation.gain.comment.voted_up'].args(COMMENT_VOTED_UP)}
+				${t['about.reputation.gain.comment.voted_up'].args(fa:toFa(COMMENT_VOTED_UP))}
 			</li>
 			<li>
-				${t['about.reputation.gain.question_and_answer.voted_down'].args(MY_ANSWER_VOTED_DOWN)}
+				${t['about.reputation.gain.question_and_answer.voted_down'].args(fa:toFa(MY_ANSWER_VOTED_DOWN))}
 			</li>
 			<li>
-				${t['about.reputation.gain.question_and_answer.voted_down.me'].args(DOWNVOTED_QUESTION_OR_ANSWER)}
+				${t['about.reputation.gain.question_and_answer.voted_down.me'].args(fa:toFa(DOWNVOTED_QUESTION_OR_ANSWER))}
 			</li>			
 		</ul>
 	</div><!-- big-text -->

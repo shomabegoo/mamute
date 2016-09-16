@@ -4,6 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@attribute name="question" type="org.mamute.model.Question" required="true" %>
 <%@attribute name="simple" type="java.lang.Boolean" required="false" %>
+<%@ taglib prefix="fa" uri="FaUtils" %>
 
 <c:if test="${simple == null}">
 	<c:set var="simple" value="false"/>
@@ -23,7 +24,7 @@
 				<tags:tagsFor taggable="${question}"/>
 			</c:if>
 			<div class="post-simple-information">
-				${question.views} <tags:pluralize key="post.list.view" count="${question.views}"/>
+				${fa:toFa(question.views)} <tags:pluralize key="post.list.view" count="${question.views}"/>
 			</div>
 		</div>
 		<c:if test="${!simple}">

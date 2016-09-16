@@ -8,6 +8,7 @@
 <%@attribute name="tag" type="org.mamute.model.Tag" required="false"%>
 <%@attribute name="unansweredTagLinks" type="java.lang.Boolean" required="false"%>
 <%@attribute name="tabs" type="java.util.List" required="false"%>
+<%@ taglib prefix="fa" uri="FaUtils" %>
 
 <tags:rssTagHeader unansweredTagLinks="${unansweredTagLinks}" tag="${tag}" 
 					title ="${title}" showTabs="${not empty tabs}"/>
@@ -25,5 +26,5 @@
 <c:if test="${empty questions}">
 	<h2 class="title section-title">${t['questions.empty_list']}</h2>
 </c:if>
-<tags:pagination url="${currentUrl}" currentPage="${currentPage}" totalPages="${totalPages}" delta="2"/>
+<tags:pagination url="${currentUrl}" currentPage="${currentPage}" totalPages="${fa:toFa(totalPages)}" delta="2"/>
 

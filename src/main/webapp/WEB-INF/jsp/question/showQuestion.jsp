@@ -1,3 +1,4 @@
+<%@ taglib prefix="fa" uri="FaUtils" %>
 <c:if test="${question.hasTags()}">
 	<c:set var="pageTitle" 
 		value="${question.mostImportantTag.name} - ${question.title}" />
@@ -15,7 +16,7 @@
 			${t['menu.questions']}
 		</a>
 	</span>
-	<span>»</span>
+	<span>ï¿½</span>
 	<span typeof="v:Breadcrumb">
 		<c:if test="${question.hasTags()}">
 			<a rel="v:url" property="v:title" href="${linkTo[ListController].withTag(question.mostImportantTag.name,1)}">
@@ -23,7 +24,7 @@
 			</a>
 		</c:if>
 	</span>
-	<span>»</span>
+	<span>ï¿½</span>
 	<span typeof="v:Breadcrumb">
 		<a rel="v:url" property="v:title" href="${linkTo[QuestionController].showQuestion(question, question.title)}">
 			<c:out value="${question.title}" escapeXml="true"/>
@@ -47,7 +48,7 @@
 	<tags:questionWith question="${question}" commentVotes="${commentsWithVotes}"/>
 	<div class="subheader">
 		<h2 class="title page-title">
-			${question.answersCount} <tags:pluralize key="question.list.answer" count="${question.answersCount}"/>
+			${fa:toFa(question.answersCount)} <tags:pluralize key="question.list.answer" count="${question.answersCount}"/>
 		</h2>
 	</div>
 	<ul>

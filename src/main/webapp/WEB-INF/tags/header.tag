@@ -26,10 +26,11 @@
 <link rel="stylesheet" href="/css/deps/fontello-embedded.css">
 <link rel="stylesheet" href="/css/deps/fontello-ie7-codes.css">
 <link rel="stylesheet" href="/css/deps/fontello-ie7.css">
-<link rel="stylesheet" href="/css/deps/pagedown.css">
+<%--<link rel="stylesheet" href="/css/deps/pagedown.css">--%>
 <link rel="stylesheet" href="/css/deps/prettify.css">
 <link rel="stylesheet" href="/css/deps/joyride-2.0.3.css">
 <link rel="stylesheet" href="/css/deps/select2.css">
+<link rel="stylesheet" href="/css/deps/custom.css">
 
 <link rel="stylesheet" href="/assets/generated-css/404.css">
 <link rel="stylesheet" href="/assets/generated-css/about.css">

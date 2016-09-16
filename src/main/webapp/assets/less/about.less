@@ -3,11 +3,14 @@
 	margin-bottom: 1.4em;
 	background-color: #F2F2F2;
 	overflow: hidden;
+	display: flex;
+    justify-content: center;
+    flex-direction: row-reverse;
 
 	@media only screen and (max-width: 700px) {
 		display: none;
 	}
-	
+
 	a {
 		color: #000080;
 	}
@@ -28,7 +31,7 @@
 			font-weight: bold;
 		}
 	}
-	
+
 	p {
 		margin: 0;
 		line-height: 1.4em;
@@ -36,7 +39,9 @@
 }
 
 .about-content {
-	float: left;
+	float: right;
+	text-align: right;
+	direction: rtl;
 }
 
 .tell-me-more {
@@ -44,6 +49,7 @@
 	color: #333;
 	padding-right: 8.5em;
 	font-size: 1.2em;
+	align-self: center;
 }
 
 .how-it-works {
@@ -60,22 +66,23 @@
 }
 
 .how-it-works-subtitle-container {
-	float: left;
+	float: right;
 	width: 80%;
 }
 
 a.how-it-works-subtitle {
 	font-size: 1.4em;
-	margin-left: 1em;
+	margin-right: 1em;
 	margin-bottom: 0;
-	text-align: left;
+	text-align: right;
 	vertical-align: -webkit-baseline-middle;
 	margin-top: .5em;
 	color: #244B69;
+	direction: rtl;
 }
 
 .how-it-works-info {
-	float: left;
+	float: right;
 }
 
 .how-it-works-icon {
@@ -92,6 +99,7 @@ a.how-it-works-subtitle {
 	color: #fff;
 	text-align: center;
 	width: 2%;
+	height: 2%;
 }
 
 .minimized-banner {

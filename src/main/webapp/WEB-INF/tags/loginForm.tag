@@ -23,6 +23,6 @@
 	</c:if>
 
 	<input name="redirectUrl" value="${redirectUrl}" type="hidden"/>
-	<input class="post-submit big-submit submit" type="submit" value="Login"/>
+	<input class="post-submit big-submit submit" type="submit" value="ورود"/>
 
 </form>

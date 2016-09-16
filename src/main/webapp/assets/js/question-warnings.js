@@ -41,10 +41,10 @@ $(function() {
 		messages.find("li."+messageClass).remove();
 		var illegalWords = [Messages.get('metas.help'), Messages.get('metas.help_me'), 
 		                    "help", Messages.get('metas.assist_me'), Messages.get('metas.urgent'), "please"];
-		
-		validateRule(title.toUpperCase() == title && title.length > 1, 
-				Messages.get('validation.avoid_only_uppercase_title'), 
-				messageClass);
+
+//		validateRule(title.toUpperCase() == title && title.length > 1,
+//				Messages.get('validation.avoid_only_uppercase_title'),
+//				messageClass);
 		validateRule(containsIllegalWords(title, illegalWords), 
 				Messages.get('validation.avoid_use_of'), 
 				messageClass);
@@ -61,9 +61,9 @@ $(function() {
 		var messageClass = "description-messages";
 		messages.find("li."+messageClass).remove();
 		var illegalWords = ["kkk", "vc", "!!", "??", "..."];
-		validateRule(description.toUpperCase() == description && description.length > 1, 
-				Messages.get('validation.avoid_only_uppercase_title'), 
-				messageClass);
+//		validateRule(description.toUpperCase() == description && description.length > 1,
+//				Messages.get('validation.avoid_only_uppercase_title'),
+//				messageClass);
 		validateRule(containsIllegalWords(description, illegalWords), 
 				Messages.get('validation.make_clear_post'), 
 				messageClass);

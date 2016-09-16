@@ -8,7 +8,7 @@
 
 <c:if test="${not empty facebookMetas || facebookMetas == true}">	
 	<meta property="og:title" content="<c:out value="${title}" escapeXml="true" />">
-	<meta property="og:site_name" content="mamute.org.br">
+	<meta property="og:site_name" content="shomabegoo.com">
 	<meta property="og:url" content='${currentUrl}'>
 	<meta property="og:type" content="website">
 	<meta property="og:image" content='${environment.get("host")}<c:url value="/imgs/logo-fb.png"/>'>
