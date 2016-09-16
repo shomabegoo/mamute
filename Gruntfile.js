@@ -58,6 +58,12 @@ module.exports = function(grunt) {
 				    dest: '<%= config.webapp %>/font/'
 				  },
 				  {
+					  expand: true,
+					  cwd: '<%= config.ignored %>/fonts/',
+					  src: ['**'],
+					  dest: '<%= config.webapp %>/fonts/'
+				  },
+				  {
 				  	expand: true,
 				  	cwd: '<%= config.ignored %>/imgs/',
 				    src: ['**'],
