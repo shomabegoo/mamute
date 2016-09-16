@@ -14,7 +14,12 @@
 <c:if test="${empty name}">
     <c:set var="name" value="description"/>
 </c:if>
+<!-- build:css /css/moratab.css -->
 <link type="text/css" rel="stylesheet" href="../../css/deps/font-awesome/css/font-awesome.min.css">
+<link type="text/css" rel="stylesheet" href="../../css/deps/moratab/editor.css">
+<!-- endbuild -->
+
+<!-- build:js /js/moratab.js -->
 <script type="text/javascript" src="/assets/js/deps/moratab/jquery.js"></script>
 <script type="text/javascript" src="/assets/js/deps/moratab/classie.js"></script>
 <script type="text/javascript" src="/assets/js/deps/moratab/prism.js"></script>
@@ -23,8 +28,8 @@
 <script type="text/javascript" src="/assets/js/deps/moratab/buttons.js"></script>
 <script type="text/javascript" src="/assets/js/deps/moratab/editor.js"></script>
 <script type="text/javascript" src="/assets/js/deps/moratab/mousetrap.js"></script>
+<!-- endbuild -->
 
-<link type="text/css" rel="stylesheet" href="../../css/deps/moratab/editor.css">
 
 <div class="moratab-container">
     <div id="moratab" data-hint-id="<c:out value="${hintId}"/>" class="hintable"><c:out value="${value}"
