@@ -1,5 +1,5 @@
 <html dir=rtl>
-	<body style="font-family:arial, sans-serif; font-size:12px;">
+	<body style="font-family:arial, sans-serif; font-size:12px; text-align: right; direction: rtl">
 		<img style="margin-bottom:30px;" src="${logoUrl}" />
 
 		<p>
