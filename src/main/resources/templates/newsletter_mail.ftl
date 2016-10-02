@@ -14,8 +14,10 @@
 	<table width="600" align="center">
 		<tr>
 	        <td style="border-bottom: 1px solid #222; padding-bottom: 10px">
-	        	<img src="${logoUrl}">
-	        	<h1 style="${mainTitleStyle}">${l10n.getMessage("newsletter_mail", [date, siteName, ""])}</h1>
+	        	<img src="${logoUrl}" style="float: left">
+                <h1 style="${mainTitleStyle}">شمابگو</h1>
+				<h2 style="${mainTitleStyle}">اخبار و سؤالات مهم هفتهٔ گذشته</h2>
+                <#--<h1 style="${mainTitleStyle}">${l10n.getMessage("newsletter_mail", [date, siteName, ""])}</h1>-->
         	</td>
 		</tr>
 

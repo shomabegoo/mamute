@@ -1,9 +1,13 @@
 package org.mamute.newsletter;
 
-import java.util.List;
-
-import javax.inject.Inject;
-
+import br.com.caelum.vraptor.environment.Environment;
+import br.com.caelum.vraptor.http.route.Router;
+import br.com.caelum.vraptor.simplemail.Mailer;
+import br.com.caelum.vraptor.simplemail.template.BundleFormatter;
+import br.com.caelum.vraptor.simplemail.template.TemplateMailer;
+import com.ibm.icu.text.DateFormat;
+import com.ibm.icu.util.Calendar;
+import com.ibm.icu.util.ULocale;
 import org.apache.commons.mail.Email;
 import org.apache.log4j.Logger;
 import org.hibernate.ScrollableResults;
@@ -20,11 +24,8 @@ import org.mamute.vraptor.Env;
 import org.owasp.html.HtmlPolicyBuilder;
 import org.owasp.html.PolicyFactory;
 
-import br.com.caelum.vraptor.environment.Environment;
-import br.com.caelum.vraptor.http.route.Router;
-import br.com.caelum.vraptor.simplemail.Mailer;
-import br.com.caelum.vraptor.simplemail.template.BundleFormatter;
-import br.com.caelum.vraptor.simplemail.template.TemplateMailer;
+import javax.inject.Inject;
+import java.util.List;
 
 public class NewsletterMailer {
 	
@@ -49,7 +50,14 @@ public class NewsletterMailer {
 		LinkToHelper linkToHelper = new NotificationMailer.LinkToHelper(router, brutalEnv);
 		String siteName = bundle.getMessage("site.name");
 		String date = brutalDateFormat.getInstance("date.joda.newsletter.pattern").print(new DateTime());
-		
+
+
+		ULocale locale = new ULocale("fa_IR@calendar=persian");
+		Calendar c = Calendar.getInstance();
+		c.setTime(new DateTime().toDate());
+		DateFormat df = DateFormat.getDateInstance(DateFormat.MEDIUM, locale);
+		date = df.format(c).replace(" ه\u200D.ش.", "");
+
 		String teste = isTestNewsletter ? bundle.getMessage("newsletter_mail_test") : "";
 		
 		while (results.next()) {
