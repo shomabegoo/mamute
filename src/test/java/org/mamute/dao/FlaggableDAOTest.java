@@ -81,7 +81,7 @@ public class FlaggableDAOTest extends DatabaseTestCase {
 		
 		flaggables.turnAllInvisibleWith(author);
 
-		List<Question> visibleQuestions = questions.allVisibleByIds(ImmutableList.of( q1.getId(), q2.getId(), q3.getId()));
+		List<Question> visibleQuestions = questions.allVisibleByIds(ImmutableList.of( q1.getId(), q2.getId(), q3.getId()), "shomabegoo");
 		
 		assertNotNull(visibleQuestions);
 		assertEquals(1, visibleQuestions.size());

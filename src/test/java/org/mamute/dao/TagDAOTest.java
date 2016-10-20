@@ -55,7 +55,7 @@ public class TagDAOTest extends DatabaseTestCase{
 		questionWith(Arrays.asList(ruby));
 		questionWith(Arrays.asList(scala));
 
-		List<TagUsage> recentTagsUsage = tags.getRecentTagsSince(new DateTime().minusMonths(2), 2);
+		List<TagUsage> recentTagsUsage = tags.getRecentTagsSince(new DateTime().minusMonths(2), 2, "shomabegoo");
 		
 		assertEquals(2, recentTagsUsage.size());
 		assertEquals(2L, recentTagsUsage.get(0).getUsage().longValue());

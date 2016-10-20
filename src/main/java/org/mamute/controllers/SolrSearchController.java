@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import br.com.caelum.vraptor.environment.Environment;
 import org.mamute.dao.QuestionDAO;
 import org.mamute.environment.EnvironmentDependent;
 import org.mamute.model.Question;
@@ -23,6 +24,7 @@ public class SolrSearchController {
 	@Inject	private Result result;
 	@Inject private QuestionIndex index;
 	@Inject private QuestionDAO questions;
+	@Inject private Environment env;
 
 	@Get
 	public void search(SanitizedText query) {
@@ -37,6 +39,6 @@ public class SolrSearchController {
 
 	private List<Question> doSearch(SanitizedText query, int limit) {
 		List<Long> ids = index.find(query.getText(), limit);
-		return questions.allVisibleByIds(ids);
+		return questions.allVisibleByIds(ids, env.get("site.name"));
 	}
 }

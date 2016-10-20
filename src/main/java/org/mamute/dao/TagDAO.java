@@ -37,12 +37,36 @@ public class TagDAO {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<TagUsage> getRecentTagsSince(DateTime since, int maxResult) {
+	public List<TagUsage> getRecentTagsSince(DateTime since, int maxResult, String siteName) {
 		Query query = session.createQuery("select new org.mamute.model.TagUsage(tag, count(question)) from Question question " +
 				"join question.information.tags tag " +
 				"where question.lastUpdatedAt > :since  group by tag order by count(question) desc");
 		query.setParameter("since", since);
-		return query.setMaxResults(maxResult).list();
+		if(siteName.equals("shomabegoo")) {
+			return query.setMaxResults(maxResult).list();
+		} else {
+			List<TagUsage> tagUsages = query.list();
+
+			Query query2 = session.createQuery(
+					"select distinct question.information.tags from Question question " +
+							"join question.information.tags tag " +
+							"where question.lastUpdatedAt > :since and tag.name = 'طب سنتی'"
+			);
+			query2.setParameter("since", since);
+			List<Tag> relatedTags = query2.list();
+
+			List result = new ArrayList();
+
+			for (TagUsage e : tagUsages) {
+				if(relatedTags.contains(e.getTag())) {
+					result.add(e);
+				}
+			}
+
+			return result.subList(0, Math.min(result.size(), maxResult));
+		}
+
+
 	}
 	
 	@SuppressWarnings("unchecked")

@@ -24,11 +24,13 @@
 							${t['menu.unanswered']}
 						</a>
 					</li>
+					<c:if test="${fn:contains(env.get('site.name'), 'shomabegoo')}">
 					<li class="nav-item menu-rank">
 						<a class="button ${not empty usersActive ? 'current' : ''}" href="${linkTo[RankingController].rank}">
 							${t['menu.users']}
 						</a>
 					</li>
+					</c:if>
 					<li class="nav-item">
 						<a class="button ${not empty newsActive ? 'current' : ''}" href="${linkTo[ListController].news}">
 							${t['menu.news']}

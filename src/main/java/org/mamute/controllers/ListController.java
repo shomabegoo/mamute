@@ -4,6 +4,7 @@ import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.actioncache.Cached;
+import br.com.caelum.vraptor.environment.Environment;
 import br.com.caelum.vraptor.routes.annotation.Routed;
 import org.joda.time.DateTime;
 import org.mamute.components.RecentTagsContainer;
@@ -36,11 +37,12 @@ public class ListController {
 	@Inject private RecentTagsContainer tagsContainer;
 	@Inject private HttpServletResponse response;
 	@Inject private MessageFactory messageFactory;
+	@Inject private Environment env;
 	
 	@Get
 	public void home(Integer p) {
 		Integer page = getPage(p);
-		List<Question> visible = questions.allVisible(page);
+		List<Question> visible = questions.allVisible(page, env.get("site.name"));
 		if (visible.isEmpty() && page != 1) {
 			result.notFound();
 			return;
@@ -49,7 +51,7 @@ public class ListController {
 		result.include("tabs", tabs);
 
 		result.include("questions", visible);
-		result.include("totalPages", questions.numberOfPages());
+		result.include("totalPages", questions.numberOfPages(env.get("site.name")));
 		result.include("currentPage", page);
 		result.include("currentUser", loggedUser);
 
@@ -69,14 +71,14 @@ public class ListController {
 		result.include("tabs", tabs);
 		result.include("currentUser", loggedUser);
 		Integer page = getPage(p);
-		List<Question> visible = questions.allVisible(page);
+		List<Question> visible = questions.allVisible(page, env.get("site.name"));
 		if (visible.isEmpty() && page != 1) {
 			result.notFound();
 			return;
 		}
 
 		result.include("questions", visible);
-		result.include("totalPages", questions.numberOfPages());
+		result.include("totalPages", questions.numberOfPages(env.get("site.name")));
 		result.include("currentPage", page);
 		result.forwardTo("/WEB-INF/jsp/list/questionListPagelet.jspf");
 	}
@@ -107,7 +109,7 @@ public class ListController {
 		}
 
 		DateTime since = DateTime.now().minusMonths(2);
-		List<Question> top = questions.top(section, count, since);
+		List<Question> top = questions.top(section, count, since, env.get("site.name"));
 		
 		if (top.isEmpty()) {
 			result.notFound();
@@ -145,16 +147,16 @@ public class ListController {
 		result.include("questions", questions.unsolvedVisible(page));
 		result.include("recentTags", recentTagsContainer.getRecentTagsUsage());
 		result.include("currentPage", page);
-		result.include("totalPages", questions.totalPagesUnsolvedVisible());
+		result.include("totalPages", questions.totalPagesUnsolvedVisible(env.get("site.name")));
 	}
 	
 	@Get
 	public void unanswered(Integer p) {
 		Integer page = getPage(p);
-		result.include("questions", questions.unanswered(page));
+		result.include("questions", questions.unanswered(page, env.get("site.name")));
 		result.include("recentTags", recentTagsContainer.getRecentTagsUsage());
 		result.include("currentPage", page);
-		result.include("totalPages", questions.totalPagesWithoutAnswers());
+		result.include("totalPages", questions.totalPagesWithoutAnswers(env.get("site.name")));
 		result.include("unansweredActive", true);
 		result.include("noDefaultActive", true);
 	}
@@ -167,7 +169,7 @@ public class ListController {
 			result.notFound();
 			return;
 		}
-		List<Question> questionsWithTag = questions.withTagVisible(tag, page, semRespostas);
+		List<Question> questionsWithTag = questions.withTagVisible(tag, page, semRespostas, env.get("site.name"));
 		result.include("totalPages", questions.numberOfPages(tag));
 		result.include("tag", tag);
 		result.include("recentTags", recentTagsContainer.getRecentTagsUsage());

@@ -41,5 +41,3 @@ src/main/webapp/font/**/*
 src/main/webapp/assets/generated-css/**/*
 src/main/webapp/assets/imgs
 src/main/webapp/WEB-INF/jsp/theme/custom/**/*
-src/main/resources/production.properties
-src/main/resources/production/
