@@ -54,7 +54,8 @@ services:
       - db
 
   db:
-    image: mysql:latest
+    build:
+      context: ./mysql
     restart: always
     volumes:
       # Used to save the database locally
