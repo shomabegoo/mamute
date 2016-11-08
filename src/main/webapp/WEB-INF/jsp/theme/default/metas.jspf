@@ -1,23 +1,25 @@
 <%@ page language="java" pageEncoding="UTF-8"
-	contentType="text/html; charset=UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+         contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <c:if test="${not empty metaDescription}">
-	<meta name="description" content="<c:out value="${metaDescription}" escapeXml="true"/>">
+    <meta name="description" content="<c:out value="${metaDescription}" escapeXml="true"/>">
 </c:if>
 
 <c:if test="${not empty facebookMetas || facebookMetas == true}">
     <!-- OpenGraph data -->
     <meta property="og:title" content="<c:out value="${title}" escapeXml="true" />">
-	<meta property="og:site_name" content="shomabegoo.com">
-	<meta property="og:url" content='${currentUrl}'>
-	<meta property="og:type" content="website">
-	<meta property="og:image" content='${environment.get("host")}<c:url value="/imgs/logo-fb.png"/>'>
+    <meta property="og:site_name" content="shomabegoo.com">
+    <meta property="og:url" content='${currentUrl}'>
+    <meta property="og:type" content="website">
+    <meta property="og:image" content='${environment.get("host")}<c:url value="/imgs/logo-fb.png"/>'>
 </c:if>
 
 <!-- Twitter Card -->
-<meta name="twitter:card" content="<c:out value="${metaDescription}" escapeXml="true"/>" >
+<meta name="twitter:card" content="summary">
+<meta name="twitter:domain" content="shomabegoo.com"/>
 <meta name="twitter:title" content="<c:out value="${title}" escapeXml="true" />">
 <meta name="twitter:description" content="<c:out value="${metaDescription}" escapeXml="true"/>">
 <meta name="twitter:url" content="${currentUrl}"/>
 <meta name="twitter:image" content="${environment.get("host")}<c:url value="/imgs/logo-fb.png"/>"/>
+
