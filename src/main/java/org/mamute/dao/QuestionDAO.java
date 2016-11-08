@@ -333,21 +333,21 @@ public class QuestionDAO implements PaginatableDAO {
 		if(ids != null && ids.size() >0) {
 			if(Objects.equals(siteName, "shomabegoo")) {
 				addInvisibleFilter(session.createCriteria(Question.class, "q")
-						.createAlias("q.information.tags", "tags")
-						.add(Restrictions.eq("tags.name", "طب سنتی"))
 						.add(in("id", ids))).list();
 			} else {
 				addInvisibleFilter(session.createCriteria(Question.class, "q")
+                        .createAlias("q.information.tags", "tags")
+                        .add(Restrictions.eq("tags.name", "طب سنتی"))
 						.add(in("id", ids))).list();
 			}
 			for (Long id : ids) {
 				Criteria criteria = session.createCriteria(Question.class, "q");
 				if(Objects.equals(siteName, "shomabegoo")) {
-					criteria.createAlias("q.information.tags", "tags")
-							.add(Restrictions.eq("tags.name", "طب سنتی"))
-							.add(Restrictions.eq("id", id));
-				} else {
 					criteria.add(Restrictions.eq("id", id));
+				} else {
+					criteria.createAlias("q.information.tags", "tags")
+                            .add(Restrictions.eq("tags.name", "طب سنتی"))
+                            .add(Restrictions.eq("id", id));
 				}
 				Question question = (Question) addInvisibleFilter(criteria).uniqueResult();
 				if(question != null) questions.add(question);
