@@ -48,11 +48,12 @@ public class IndexSyncJob {
 				try {
 					QuestionDAO questions = new QuestionDAO(session, generateUser());
 
-					long pages = questions.numberOfPages();
+					long pages = questions.numberOfPages(environment.get("site.name"));
 					long total = 0;
 					LOGGER.info("Syncing questions!");
 					for (int i = 0; i < pages; i++) {
-						List<Question> q = questions.allVisible(i);
+						List<Question> q = questions.allVisible(i, environment.get("site.name"));
+						if(q.size() == 0) continue;
 						index.indexQuestionBatch(q);
 						total += q.size();
 					}

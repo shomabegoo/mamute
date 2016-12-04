@@ -1,21 +1,6 @@
 package org.mamute.dao;
 
-import static java.util.Collections.EMPTY_LIST;
-import static org.hibernate.criterion.Order.desc;
-import static org.hibernate.criterion.Projections.rowCount;
-import static org.hibernate.criterion.Restrictions.and;
-import static org.hibernate.criterion.Restrictions.eq;
-import static org.hibernate.criterion.Restrictions.gt;
-import static org.hibernate.criterion.Restrictions.in;
-import static org.hibernate.criterion.Restrictions.isNull;
-
-import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import javax.inject.Inject;
-
+import br.com.caelum.vraptor.environment.Environment;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -28,11 +13,22 @@ import org.mamute.dao.WithUserPaginatedDAO.UserRole;
 import org.mamute.model.*;
 import org.mamute.model.interfaces.RssContent;
 
+import javax.inject.Inject;
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
+import static java.util.Collections.EMPTY_LIST;
+import static org.hibernate.criterion.Order.desc;
+import static org.hibernate.criterion.Projections.rowCount;
+import static org.hibernate.criterion.Restrictions.*;
+
 @SuppressWarnings("unchecked")
 public class QuestionDAO implements PaginatableDAO {
     protected static final Integer PAGE_SIZE = 35;
 	public static final long SPAM_BOUNDARY = -5;
-	
+
 	private Session session;
     private WithUserPaginatedDAO<Question> withAuthor;
 	private InvisibleForUsersRule invisible;
@@ -47,7 +43,7 @@ public class QuestionDAO implements PaginatableDAO {
 		this.invisible = invisible;
 		this.withAuthor = new WithUserPaginatedDAO<Question>(session, Question.class, UserRole.AUTHOR, invisible);
     }
-    
+
     public void save(Question q) {
         session.save(q);
     }
@@ -55,13 +51,22 @@ public class QuestionDAO implements PaginatableDAO {
 	public Question getById(Long questionId) {
 		return (Question) session.load(Question.class, questionId);
 	}
-	
-	public List<Question> allVisible(Integer page) {
-		Criteria criteria = session.createCriteria(Question.class, "q")
-				.createCriteria("q.solution.information", JoinType.LEFT_OUTER_JOIN)
-				.addOrder(desc("q.lastUpdatedAt"))
-				.setFirstResult(firstResultOf(page))
-				.setMaxResults(PAGE_SIZE);
+
+	public List<Question> allVisible(Integer page, String siteName) {
+		Criteria criteria = session.createCriteria(Question.class, "q");
+		if(Objects.equals(siteName, "shomabegoo")) {
+			criteria.createCriteria("q.solution.information", JoinType.LEFT_OUTER_JOIN)
+					.addOrder(desc("q.lastUpdatedAt"))
+					.setFirstResult(firstResultOf(page))
+					.setMaxResults(PAGE_SIZE);
+		} else {
+			criteria.createAlias("q.information.tags", "tags")
+					.add(Restrictions.eq("tags.name", "طب سنتی"))
+					.createCriteria("q.solution.information", JoinType.LEFT_OUTER_JOIN)
+					.addOrder(desc("q.lastUpdatedAt"))
+					.setFirstResult(firstResultOf(page))
+					.setMaxResults(PAGE_SIZE);
+		}
 
 		return addInvisibleFilter(criteria).list();
 	}
@@ -73,18 +78,29 @@ public class QuestionDAO implements PaginatableDAO {
 				.setMaxResults(PAGE_SIZE)
 				.setFirstResult(firstResultOf(page))
 				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-				
+
 		return addInvisibleFilter(criteria).list();
 	}
-	
-	public List<Question> unanswered(Integer page) {
-		Criteria criteria = session.createCriteria(Question.class, "q")
-				.add(Restrictions.eq("q.answerCount", 0l))
-				.addOrder(Order.desc("q.lastUpdatedAt"))
-				.setMaxResults(PAGE_SIZE)
-				.setFirstResult(firstResultOf(page))
-				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-		
+
+	public List<Question> unanswered(Integer page, String siteName) {
+		Criteria criteria = session.createCriteria(Question.class, "q");
+		if(Objects.equals(siteName, "shomabegoo")) {
+            criteria.add(Restrictions.eq("q.answerCount", 0l))
+                    .addOrder(Order.desc("q.lastUpdatedAt"))
+                    .setMaxResults(PAGE_SIZE)
+                    .setFirstResult(firstResultOf(page))
+                    .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+
+        } else {
+            criteria.createAlias("q.information.tags", "tags")
+					.add(Restrictions.eq("tags.name", "طب سنتی"))
+					.add(Restrictions.eq("q.answerCount", 0l))
+                    .addOrder(Order.desc("q.lastUpdatedAt"))
+                    .setMaxResults(PAGE_SIZE)
+                    .setFirstResult(firstResultOf(page))
+                    .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+        }
+
 		return addInvisibleFilter(criteria).list();
 	}
 
@@ -92,23 +108,35 @@ public class QuestionDAO implements PaginatableDAO {
 		return getById(question.getId());
 	}
 
-	public List<Question> withTagVisible(Tag tag, Integer page, boolean semRespostas) {
-		Criteria criteria = session.createCriteria(Question.class, "q")
-				.createAlias("q.information.tags", "t")
-				.add(Restrictions.eq("t.id", tag.getId()))
-				.addOrder(Order.desc("q.lastUpdatedAt"))
-				.setFirstResult(firstResultOf(page))
-				.setMaxResults(50)
-				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-		
-		if (semRespostas) {
-			criteria.add(Restrictions.eq("q.answerCount", 0l));
-		}
+	public List<Question> withTagVisible(Tag tag, Integer page, boolean semRespostas, String siteName) {
+		if(Objects.equals(siteName, "shomabegoo")) {
+			Criteria criteria = session.createCriteria(Question.class, "q")
+					.createAlias("q.information.tags", "t")
+					.add(Restrictions.eq("t.id", tag.getId()))
+					.addOrder(Order.desc("q.lastUpdatedAt"))
+					.setFirstResult(firstResultOf(page))
+					.setMaxResults(50)
+					.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+			if (semRespostas) {
+				criteria.add(Restrictions.eq("q.answerCount", 0l));
+			}
 
-		
-		return addInvisibleFilter(criteria).list();
+			return addInvisibleFilter(criteria).list();
+		} else {
+			Query query = session.createQuery(
+					"select question from Question question " +
+							"join question.information.tags tag " +
+							"join question.information.tags tags " +
+							"where tag.name = 'طب سنتی' and tags.id = " + tag.getId() +
+							" order by question.lastUpdatedAt asc"
+			);
+
+			query.setFirstResult(firstResultOf(page));
+			query.setMaxResults(50);
+			return query.list();
+		}
 	}
-	
+
 	public List<Question> ofUserPaginatedBy(User user, OrderType orderByWhat, Integer page) {
 		return withAuthor.by(user,orderByWhat, page);
 	}
@@ -120,7 +148,7 @@ public class QuestionDAO implements PaginatableDAO {
 				.setMaxResults(maxResults)
 				.list();
 	}
-	
+
 	public List<RssContent> orderedByCreationDate(int maxResults, Tag tag) {
 		return session.createCriteria(Question.class, "q")
 				.createAlias("q.information.tags", "tags")
@@ -129,7 +157,7 @@ public class QuestionDAO implements PaginatableDAO {
 				.setMaxResults(maxResults)
 				.list();
 	}
-	
+
 
 	public List<Question> getRelatedTo(Question question) {
 		if (question.hasTags()) {
@@ -151,26 +179,41 @@ public class QuestionDAO implements PaginatableDAO {
 				.setMaxResults(count)
 				.list();
 	}
-	
-	public List<Question> top(String section, int count, DateTime since) {
+
+	public List<Question> top(String section, int count, DateTime since, String siteName) {
 		Order order;
-		if (section.equals("viewed")) {
-			order = Order.desc("q.views");
+		switch (section) {
+			case "viewed":
+				order = Order.desc("q.views");
+				break;
+			case "answered":
+				order = Order.desc("q.answerCount");
+				break;
+			default:/*if (section.equals("voted"))*/
+				order = Order.desc("q.voteCount");
+				break;
 		}
-		else if (section.equals("answered")) {
-			order = Order.desc("q.answerCount");
+		List<Question> questions;
+
+		Criteria criteria = session.createCriteria(Question.class, "q");
+		if(Objects.equals(siteName, "shomabegoo")) {
+			questions = criteria.add(and(Restrictions.eq("q.moderationOptions.invisible", false)))
+					.add(gt("q.createdAt", since))
+					.addOrder(order)
+					.setMaxResults(count)
+					.list();
+		} else {
+			questions = criteria.createAlias("q.information.tags", "tags")
+					.add(Restrictions.eq("tags.name", "طب سنتی"))
+					.add(and(Restrictions.eq("q.moderationOptions.invisible", false)))
+					.add(gt("q.createdAt", since))
+					.addOrder(order)
+					.setMaxResults(count)
+					.list();
 		}
-		else /*if (section.equals("voted"))*/ {
-			order = Order.desc("q.voteCount");
-		}
-		return session.createCriteria(Question.class, "q")
-				.add(and(Restrictions.eq("q.moderationOptions.invisible", false)))
-				.add(gt("q.createdAt", since))
-				.addOrder(order)
-				.setMaxResults(count)
-				.list();
+		return questions;
 	}
-	
+
 	public List<Question> randomUnanswered(DateTime after, DateTime before, int count) {
 		return session.createCriteria(Question.class, "q")
 				.add(and(isNull("q.solution"), Restrictions.between("q.createdAt", after, before)))
@@ -187,11 +230,22 @@ public class QuestionDAO implements PaginatableDAO {
 	public Long numberOfPagesTo(User user) {
 		return withAuthor.numberOfPagesTo(user);
 	}
-	
-	public long numberOfPages() {
+
+	public long numberOfPages(String siteName) {
 		Criteria criteria = session.createCriteria(Question.class, "q")
 				.setProjection(rowCount());
-		Long totalItems = (Long) addInvisibleFilter(criteria).list().get(0);
+		Long totalItems;
+
+		if(Objects.equals(siteName, "shomabegoo")) {
+			totalItems = (Long) addInvisibleFilter(criteria).list().get(0);
+		} else {
+			totalItems = (Long) session.createQuery("" +
+					"select count(question) from Question question " +
+					"join question.information.tags tag " +
+					"where tag.name = 'طب سنتی'").list().get(0);
+		}
+
+
 		return calculatePages(totalItems);
 	}
 
@@ -205,19 +259,36 @@ public class QuestionDAO implements PaginatableDAO {
 		return calculatePages(totalItems);
 	}
 
-	public Long totalPagesUnsolvedVisible() {
+	public Long totalPagesUnsolvedVisible(String siteName) {
 		Criteria criteria = session.createCriteria(Question.class, "q")
 				.add(isNull("q.solution"))
 				.setProjection(rowCount());
-		Long result = (Long) addInvisibleFilter(criteria).list().get(0);
+		Long result;
+		if(Objects.equals(siteName, "shomabegoo")) {
+			result = (Long) addInvisibleFilter(criteria).list().get(0);
+		} else {
+			result = (Long) session.createQuery("" +
+					"select count(question) from Question question " +
+					"join question.information.tags tag " +
+					"where tag.name = 'طب سنتی' and question.solution = null").list().get(0);
+		}
+
 		return calculatePages(result);
 	}
-	
-	public Long totalPagesWithoutAnswers() {
+
+	public Long totalPagesWithoutAnswers(String siteName) {
 		Criteria criteria = session.createCriteria(Question.class, "q")
 				.add(Restrictions.eq("q.answerCount", 0l))
 				.setProjection(rowCount());
-		Long result = (Long) addInvisibleFilter(criteria).list().get(0);
+		Long result;
+		if(Objects.equals(siteName, "shomabegoo")) {
+			result = (Long) addInvisibleFilter(criteria).list().get(0);
+		} else {
+			result = (Long) session.createQuery("" +
+					"select count(question) from Question question " +
+					"join question.information.tags tag " +
+					"where tag.name = 'طب سنتی' and question.answerCount = 0l").list().get(0);
+		}
 		return calculatePages(result);
 	}
 
@@ -237,8 +308,8 @@ public class QuestionDAO implements PaginatableDAO {
 		return invisible.addFilter("q", criteria);
 	}
 
-	public List<Question> withTagVisible(Tag tag, int page) {
-		return withTagVisible(tag, page, false);
+	public List<Question> withTagVisible(Tag tag, int page, String siteName) {
+		return withTagVisible(tag, page, false, siteName);
 	}
 
 	public Question fromCommentId (Long id) {
@@ -257,12 +328,27 @@ public class QuestionDAO implements PaginatableDAO {
 	/**
 	 * Query for the set of question IDs. Order is preserved in the returned list.
 	 */
-	public List<Question> allVisibleByIds(List<Long> ids) {
+	public List<Question> allVisibleByIds(List<Long> ids, String siteName) {
 		List<Question> questions = new ArrayList<>();
 		if(ids != null && ids.size() >0) {
-			addInvisibleFilter(session.createCriteria(Question.class, "q").add(in("id", ids))).list();
+			if(Objects.equals(siteName, "shomabegoo")) {
+				addInvisibleFilter(session.createCriteria(Question.class, "q")
+						.add(in("id", ids))).list();
+			} else {
+				addInvisibleFilter(session.createCriteria(Question.class, "q")
+                        .createAlias("q.information.tags", "tags")
+                        .add(Restrictions.eq("tags.name", "طب سنتی"))
+						.add(in("id", ids))).list();
+			}
 			for (Long id : ids) {
-				Criteria criteria = session.createCriteria(Question.class, "q").add(Restrictions.eq("id", id));
+				Criteria criteria = session.createCriteria(Question.class, "q");
+				if(Objects.equals(siteName, "shomabegoo")) {
+					criteria.add(Restrictions.eq("id", id));
+				} else {
+					criteria.createAlias("q.information.tags", "tags")
+                            .add(Restrictions.eq("tags.name", "طب سنتی"))
+                            .add(Restrictions.eq("id", id));
+				}
 				Question question = (Question) addInvisibleFilter(criteria).uniqueResult();
 				if(question != null) questions.add(question);
 			}

@@ -1,0 +1,10 @@
+MySQL*
+.env
+
+importsqldump/data
+
+Shomabegoo/mamute-1.4.0.war
+
+Tabaye/mamute-1.4.0.war
+
+Nginx/conf.d/*.test.conf

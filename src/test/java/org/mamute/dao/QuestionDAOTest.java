@@ -95,7 +95,7 @@ public class QuestionDAOTest extends DatabaseTestCase {
 		Question javaEEQuestion = javaEEQuestion();
 		Question androidQuestion = androidQuestion();
 		
-		List<Question> questionsAboutJava = questionsBeingAuthor.withTagVisible(java, 1);
+		List<Question> questionsAboutJava = questionsBeingAuthor.withTagVisible(java, 1, "shomabegoo");
 
 		assertTrue(questionsAboutJava.contains(javaQuestion));
 		assertFalse(questionsAboutJava.contains(javaEEQuestion));
@@ -132,11 +132,11 @@ public class QuestionDAOTest extends DatabaseTestCase {
 	@Test
 	public void should_calculate_number_of_pages() {
 		saveQuestions(2*PAGE_SIZE);
-		assertEquals(2l, questionsForAnyone.numberOfPages());
+		assertEquals(2l, questionsForAnyone.numberOfPages("shomabegoo"));
 		saveQuestions(1);
-		assertEquals(3l, questionsForAnyone.numberOfPages());
+		assertEquals(3l, questionsForAnyone.numberOfPages("shomabegoo"));
 		saveQuestions(PAGE_SIZE-1);
-		assertEquals(3l, questionsForAnyone.numberOfPages());
+		assertEquals(3l, questionsForAnyone.numberOfPages("shomabegoo"));
 	}
 	
 	@Test
@@ -213,7 +213,7 @@ public class QuestionDAOTest extends DatabaseTestCase {
 		session.save(q2);
 		session.save(q3);
 
-		List<Question> questions = questionsForAnyone.allVisibleByIds(ImmutableList.of(q2.getId(), q3.getId(), q1.getId()));
+		List<Question> questions = questionsForAnyone.allVisibleByIds(ImmutableList.of(q2.getId(), q3.getId(), q1.getId()), "shomabegoo");
 
 		assertNotNull(questions);
 		assertEquals(2, questions.size());
@@ -223,7 +223,7 @@ public class QuestionDAOTest extends DatabaseTestCase {
 
 	@Test
 	public void should_get_empty_list(){
-		List<Question> questions = questionsForAnyone.allVisibleByIds(Collections.<Long>emptyList());
+		List<Question> questions = questionsForAnyone.allVisibleByIds(Collections.<Long>emptyList(), "shomabegoo");
 		assertNotNull(questions);
 		assertEquals(0, questions.size());
 	}
@@ -239,15 +239,15 @@ public class QuestionDAOTest extends DatabaseTestCase {
 	}
 	
 	private void assertNotContains(Question question, QuestionDAO dao) {
-		assertFalse(dao.allVisible(1).contains(question));
+		assertFalse(dao.allVisible(1, "shomabegoo").contains(question));
 		assertFalse(dao.unsolvedVisible(1).contains(question));
-		assertFalse(dao.withTagVisible(java, 1).contains(question));
+		assertFalse(dao.withTagVisible(java, 1, "shomabegoo").contains(question));
 	}
 	
 	private void assertContains(Question question, QuestionDAO dao) {
-		assertTrue(dao.allVisible(1).contains(question));
+		assertTrue(dao.allVisible(1, "shomabegoo").contains(question));
 		assertTrue(dao.unsolvedVisible(1).contains(question));
-		assertTrue(dao.withTagVisible(java, 1).contains(question));
+		assertTrue(dao.withTagVisible(java, 1, "shomabegoo").contains(question));
 	}
 	
 	private Question javaEEQuestion(){

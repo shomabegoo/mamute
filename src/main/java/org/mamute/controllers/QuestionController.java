@@ -133,6 +133,7 @@ public class QuestionController {
 	public void showQuestion(@Load Question question, String sluggedTitle){
 		User current = currentUser.getCurrent();
 		if (question.isVisibleFor(current)){
+		    result.include("title", question.getTitle());
 			result.include("markAsSolution", question.canMarkAsSolution(current));
 			result.include("showUpvoteBanner", !current.isVotingEnough());
 			result.include("editedLink", true);

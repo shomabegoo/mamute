@@ -54,7 +54,7 @@ public class RecentTagsContainer {
 	public void update(Session session) {
 	    TagDAO tags = new TagDAO(session);
 		int maxRecentTags = env.has("max_recent_tags") ? Integer.parseInt(env.get("max_recent_tags")) : 10;
-	    this.recentTagsUsage = tags.getRecentTagsSince(new DateTime().minusMonths(3), maxRecentTags);
+	    this.recentTagsUsage = tags.getRecentTagsSince(new DateTime().minusMonths(3), maxRecentTags, env.get("site.name"));
 	}
 	
 	public void destroy() {
