@@ -70,7 +70,7 @@
         <textarea id="hiddentextarea" class="${htmlClass} hintable wmd-input" id="wmd-input"
                   placeholder="${placeholder}"
                   data-hint-id="${hintId}"
-                  minlength="${minlength}"
+                  <%--minlength="${minlength}"--%>
                   maxlength="${maxlength}"
                   name="${name}" style="display:none"><c:out value="${value}" escapeXml="true"/></textarea>
     </div>

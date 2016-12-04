@@ -34,7 +34,7 @@ import org.mamute.validators.OptionallyEmptyTags;
 public class QuestionInformation implements Information, Taggable {
 
 	private static final int COMMENT_MIN_LENGTH = 5;
-	public static final int DESCRIPTION_MIN_LENGTH = 30;
+//	public static final int DESCRIPTION_MIN_LENGTH = 0;
 	public static final int TITLE_MAX_LENGTH = 150;
 	public static final int TITLE_MIN_LENGTH = 15;
 
@@ -48,8 +48,8 @@ public class QuestionInformation implements Information, Taggable {
 	private String title;
 
 	@Lob
-	@Length(min = DESCRIPTION_MIN_LENGTH, message = "question.errors.description.length")
-	@NotEmpty
+//	@Length(min = DESCRIPTION_MIN_LENGTH, message = "question.errors.description.length")
+//	@NotEmpty
 	private String description;
 
 	@Type(type = "text")
