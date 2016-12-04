@@ -31,11 +31,11 @@
 						</a>
 					</li>
 					</c:if>
-					<li class="nav-item">
-						<a class="button ${not empty newsActive ? 'current' : ''}" href="${linkTo[ListController].news}">
-							${t['menu.news']}
-						</a>
-					</li>
+					<%--<li class="nav-item">--%>
+						<%--<a class="button ${not empty newsActive ? 'current' : ''}" href="${linkTo[ListController].news}">--%>
+							<%--${t['menu.news']}--%>
+						<%--</a>--%>
+					<%--</li>--%>
 					<li class="ask nav-item">
 						<a class="button ask-a-question" href='${linkTo[QuestionController].newQuestion}'>
 							${t['menu.question.ask']}
