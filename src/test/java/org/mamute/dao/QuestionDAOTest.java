@@ -64,17 +64,17 @@ public class QuestionDAOTest extends DatabaseTestCase {
 	}
 	
 	
-	@Test(expected=ConstraintViolationException.class)
-	public void should_throw_constraint_exception_if_description_is_null() {
-		Question myQuestion = question.withTitle(VALID_TITLE).withDescription((String) null).withAuthor(author).build();
-		questionsBeingAuthor.save(myQuestion );
-	}
+//	@Test(expected=ConstraintViolationException.class)
+//	public void should_throw_constraint_exception_if_description_is_null() {
+//		Question myQuestion = question.withTitle(VALID_TITLE).withDescription((String) null).withAuthor(author).build();
+//		questionsBeingAuthor.save(myQuestion );
+//	}
 	
-	@Test(expected=ConstraintViolationException.class)
-	public void should_throw_constraint_exception_if_description_has_less_than_30_chars() {
-		Question myQuestion = question.withTitle(VALID_TITLE).withDescription(INVALID_DESC).withAuthor(author).build();
-		questionsBeingAuthor.save(myQuestion);
-	}
+//	@Test(expected=ConstraintViolationException.class)
+//	public void should_throw_constraint_exception_if_description_has_less_than_30_chars() {
+//		Question myQuestion = question.withTitle(VALID_TITLE).withDescription(INVALID_DESC).withAuthor(author).build();
+//		questionsBeingAuthor.save(myQuestion);
+//	}
 	
 	@Test(expected=ConstraintViolationException.class)
 	public void should_throw_constraint_exception_if_title_is_null() {
