@@ -42,11 +42,11 @@ public class NewsletterMailer {
 	@Inject private Environment env;
 
 	public void sendTo(ScrollableResults results, boolean isTestNewsletter) {
-		DateTime pastWeek = new DateTime().minusWeeks(1);
+		DateTime pastMonth = new DateTime().minusWeeks(4);
 		DateTime twelveHoursAgo = new DateTime().minusHours(12);
 		List<News> hotNews = news.hotNews();
-		List<Question> hotQuestions = questions.hot(pastWeek, 8);
-		List<Question> unanswered = questions.randomUnanswered(pastWeek, twelveHoursAgo, 8);
+		List<Question> hotQuestions = questions.hot(pastMonth, 8);
+		List<Question> unanswered = questions.randomUnanswered(pastMonth, twelveHoursAgo, 8);
 		LinkToHelper linkToHelper = new NotificationMailer.LinkToHelper(router, brutalEnv);
 		String siteName = bundle.getMessage("site.name");
 		String date = brutalDateFormat.getInstance("date.joda.newsletter.pattern").print(new DateTime());
@@ -63,7 +63,7 @@ public class NewsletterMailer {
 		while (results.next()) {
 			User user = (User) results.get()[0];
 			try {
-				Email email = templates.template("newsletter_mail", date, siteName, teste)
+				Email email = templates.template("newsletter_mail", siteName, teste)
 						.with("hotNews", hotNews)
 						.with("hotQuestions", hotQuestions)
 						.with("unansweredQuestions", unanswered)
