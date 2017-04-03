@@ -12,7 +12,7 @@
     <meta property="og:site_name" content="shomabegoo.com">
     <meta property="og:url" content='${currentUrl}'>
     <meta property="og:type" content="website">
-    <meta property="og:image" content='${environment.get("host")}<c:url value="/imgs/logo-fb.png"/>'>
+    <meta property="og:image" content='${environment.get("host")}<c:url value="/imgs/logo-og.png"/>'>
 </c:if>
 
 <!-- Twitter Card -->
@@ -21,5 +21,5 @@
 <meta name="twitter:title" content="<c:out value="${title}" escapeXml="true" />">
 <meta name="twitter:description" content="<c:out value="${metaDescription}" escapeXml="true"/>">
 <meta name="twitter:url" content="${currentUrl}"/>
-<meta name="twitter:image" content="${environment.get("host")}<c:url value="/imgs/logo-fb.png"/>"/>
+<meta name="twitter:image" content="${environment.get("host")}<c:url value="/imgs/logo-og.png"/>"/>
 
