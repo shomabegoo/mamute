@@ -84,6 +84,7 @@
 
 <tags:brutal-include value="headJavascripts" />
 
+<link rel="shortcut icon" type="image/x-icon" href="${environment.get("host")}<c:url value="/imgs/favicon.ico"/>" />
 <link rel="canonical" href="${currentUrl}"/>
 </head>
 <body>
