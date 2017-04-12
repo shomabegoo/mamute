@@ -52,10 +52,10 @@ import org.mamute.providers.SessionFactoryCreator;
 @Entity
 @Vetoed
 public class User implements Identifiable {
-	
+
 	@Type(type = SessionFactoryCreator.JODA_TIME_TYPE)
 	private final DateTime createdAt = new DateTime();
-	
+
 	@Id
 	@GeneratedValue
 	private Long id;
@@ -63,34 +63,34 @@ public class User implements Identifiable {
 	@NotEmpty(message = NAME_REQUIRED)
 	@Length(min = NAME_MIN_LENGTH, max = NAME_MAX_LENGTH, message = NAME_LENGTH_MESSAGE)
 	private String name;
-	
+
 	@Length(min = WEBSITE_MIN_LENGTH, max = WEBSITE_MAX_LENGHT, message = WEBSITE_LENGTH_MESSAGE)
 	private String website;
-	
+
 	@Length(max = LOCATION_MAX_LENGTH, message = LOCATION_LENGTH_MESSAGE)
 	private String location;
-	
+
 	private String about;
-	
+
 	private String markedAbout;
-	
+
 	@Type(type = SessionFactoryCreator.JODA_TIME_TYPE)
 	private DateTime birthDate;
-	
+
 	private long karma = 0;
-	
+
 	private boolean moderator = false;
 
 	private boolean confirmedEmail = false;
 
 	private String forgotPasswordToken = "";
-	
+
 	private String photoUri;
-	
+
 	@Type(type = "text")
 	@NotEmpty
 	private String sluggedName;
-	
+
 	@Type(type = SessionFactoryCreator.JODA_TIME_TYPE)
 	private DateTime nameLastTouchedAt;
 
@@ -104,12 +104,12 @@ public class User implements Identifiable {
 	private String email;
 
 	private boolean isSubscribed = true;
-	
+
 	private boolean isBanned = false;
-	
+
 	@OneToMany(mappedBy = "watcher")
 	private final List<Watcher> watches = new ArrayList<>();
-	
+
 	@Type(type = SessionFactoryCreator.JODA_TIME_TYPE)
 	private DateTime lastUpvote = new DateTime();
 
@@ -124,7 +124,7 @@ public class User implements Identifiable {
 		GHOST = new User(fromTrustedText("GHOST"), "");
 		GHOST.setId(1000l);
 	}
-	
+
 	/**
 	 * @deprecated hibernate eyes only
 	 */
@@ -157,11 +157,11 @@ public class User implements Identifiable {
     public void setId(Long id) {
     	this.id = id;
     }
-	
+
 	public void setPhotoUri(URL storedUri) {
 		photoUri = storedUri.toString();
 	}
-	
+
 	public void setPersonalInformation(UserPersonalInfo info) {
 		this.birthDate = info.getBirthDate();
 		this.name = info.getName();
@@ -181,19 +181,19 @@ public class User implements Identifiable {
 	public boolean isSubscribedToNewsletter() {
 		return isSubscribed;
 	}
-	
+
 	public Long getId() {
 		return this.id;
 	}
-	
+
 	public String getSmallPhoto(String gravatarUrl) {
 	    return getPhoto(32, 32, gravatarUrl);
 	}
-	
+
 	public String getMediumPhoto(String gravatarUrl) {
 		return getPhoto(48, 48, gravatarUrl);
 	}
-	
+
 	public String getBigPhoto(String gravatarUrl) {
 		return getPhoto(128, 128, gravatarUrl);
 	}
@@ -213,23 +213,23 @@ public class User implements Identifiable {
 	public String getSluggedName() {
 		return sluggedName;
 	}
-	
+
 	public DateTime getCreatedAt() {
 		return createdAt;
 	}
-	
+
 	public String getWebsite() {
 		return website;
 	}
-	
+
 	public String getLocation() {
 		return location;
 	}
-	
+
 	public DateTime getBirthDate() {
 		return birthDate;
 	}
-	
+
 	public Integer getAge() {
 		DateTime now = new DateTime();
 		if (birthDate == null){
@@ -237,7 +237,7 @@ public class User implements Identifiable {
 		}
 		return Years.yearsBetween(birthDate, now).getYears();
 	}
-	
+
 	public LoginMethod getBrutalLogin() {
 		for (LoginMethod method : loginMethods) {
 			if (method.isBrutal()) {
@@ -246,7 +246,7 @@ public class User implements Identifiable {
 		}
 		throw new IllegalStateException("this guy dont have a brutal login method!");
 	}
-	
+
 	public String getPhoto(Integer width, Integer height, String gravatarUrl) {
 		if (this.avatarImage != null) {
 			return localAvatarPhoto(width, height);
@@ -254,13 +254,8 @@ public class User implements Identifiable {
 		String size = width + "x" + height;
 		if (photoUri == null) {
 			String digest = Digester.md5(email);
-			String robohash = "http://robohash.org/size_"+size+"/set_set1/bgset_any/"+digest+".png";
-			String gravatar = gravatarUrl + "/avatar/" + digest + ".png?r=PG&size=" + size;
-			try {
-				return gravatar + "&d=" + java.net.URLEncoder.encode(robohash, "UTF-8");
-			} catch (UnsupportedEncodingException e) {
-				return gravatar;
-			}
+            String gravatar = gravatarUrl + "/avatar/" + digest + ".png?r=PG&size=" + size;
+            return gravatar + "&d=identicon";
 		} else if (photoUri.contains("googleusercontent")) {
             return photoUri.replaceAll("sz=(\\d+)", "sz="+width);
         } else {
@@ -277,7 +272,7 @@ public class User implements Identifiable {
 	public String getAbout() {
 		return about;
 	}
-	
+
 	public String getMarkedAbout() {
 		return markedAbout;
 	}
@@ -286,7 +281,7 @@ public class User implements Identifiable {
 	public String toString() {
 		return "[User " + email + ", "+ name +", "+ id +"]";
 	}
-	
+
 	public boolean isModerator() {
 		return moderator;
 	}
@@ -300,12 +295,12 @@ public class User implements Identifiable {
 		this.moderator = false;
 		return this;
 	}
-	
+
 	public boolean canModerate(EnvironmentKarma environmentKarma) {
 		long karma = environmentKarma.get(PermissionRules.MODERATE_EDITS);
 		return isModerator() || this.karma >= karma;
 	}
-	
+
 	public void setSubscribed(boolean isSubscribed){
 		this.isSubscribed = isSubscribed;
 	}
@@ -346,11 +341,11 @@ public class User implements Identifiable {
     public void increaseKarma(int value) {
         this.karma += value;
     }
-    
+
     public void confirmEmail(){
     	confirmedEmail = true;
 	}
-    
+
 	public void add(LoginMethod brutalLogin) {
 		loginMethods.add(brutalLogin);
 	}
@@ -358,17 +353,17 @@ public class User implements Identifiable {
 	public boolean isAuthorOf(Votable votable) {
 		return id == votable.getAuthor().getId();
 	}
-	
+
 	public boolean hasKarmaToAnswerOwnQuestion(EnvironmentKarma environmentKarma) {
 		long answerOwnQuestion = environmentKarma.get(PermissionRules.ANSWER_OWN_QUESTION);
 		return (this.karma >= answerOwnQuestion) || isModerator();
 	}
-	
+
 	public boolean hasKarmaToAnswerInactiveQuestion(EnvironmentKarma environmentKarma) {
 		long answerInactiveQuestion = environmentKarma.get(PermissionRules.INACTIVATE_QUESTION);
 		return (this.karma >= answerInactiveQuestion) || isModerator();
 	}
-	
+
 	public List<LoginMethod> getLoginMethods() {
 		return loginMethods;
 	}
@@ -401,7 +396,7 @@ public class User implements Identifiable {
 	public String getUnsubscribeHash() {
 		return Digester.encrypt(this.email + hashFor(this.id));
 	}
-	
+
 	public boolean isBanned() {
 		return isBanned;
 	}
@@ -409,7 +404,7 @@ public class User implements Identifiable {
 	public void ban() {
 		this.isBanned = true;
 	}
-	
+
 	public void undoBan() {
 		this.isBanned = false;
 	}
@@ -417,7 +412,7 @@ public class User implements Identifiable {
 	public void votedUp() {
 		this.lastUpvote = new DateTime();
 	}
-	
+
 	public boolean isVotingEnough(){
 		return !lastUpvote.isBefore(new DateTime().minusWeeks(1));
 	}
