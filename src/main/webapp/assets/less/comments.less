@@ -6,10 +6,12 @@
 
 .comment {
 	overflow: hidden;
-	padding: .2em 2em .2em .5em;
+	padding: .29em .0em .0em .5em;
 	border-bottom: dotted 1px #ddd;
 	line-height: 16px;
-	
+    text-align: right;
+    direction: rtl;
+
 	p {
 		display: inline;
 	}
@@ -34,10 +36,10 @@
 
 .comment-meta {
 	width: 5%;
-	min-height: 33px;
+	min-height: 23px;
+    margin-left: 10px;
 
 	@media only screen and (max-width: 550px) {
-		height: 40px;
 		text-align:center;
 	}
 }
@@ -48,8 +50,7 @@
 
 .comment-container {
 	width: 94%;
-	float: right;
-	
+
 	> * {
 		display: inline;
 	}
