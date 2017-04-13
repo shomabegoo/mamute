@@ -41,7 +41,7 @@
 			</tags:simpleAjaxFormWith>
 		</c:if>
 		<c:if test="${env.supports('deletable.comments') and (currentUser.current.isAuthorOf(comment) or currentUser.moderator)}">
-			<a class="delete-post" data-confirm-deletion="true" data-delete-form="delete-comment-form" href="#">Delete</a>
+			<a class="delete-post" data-confirm-deletion="true" data-delete-form="delete-comment-form" href="#">حذف</a>
 			<form class="hidden delete-comment-form" method="post" action="${linkTo[CommentController].delete(comment.id)}">
 				<input type="hidden" value="DELETE" name="_method">
 				<input type="hidden" value="${type}" name="onWhat">
