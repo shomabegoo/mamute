@@ -255,7 +255,13 @@ public class User implements Identifiable {
 		if (photoUri == null) {
 			String digest = Digester.md5(email);
             String gravatar = gravatarUrl + "/avatar/" + digest + ".png?r=PG&size=" + size;
-            return gravatar + "&d=identicon";
+            String adorable = "https://api.adorable.io/avatars/" + width + "/" + digest;
+			String robohash = "https://robohash.org/size_"+size+"/set_set1/bgset_any/"+digest+".png";
+			try {
+				return "http://shomabegoo-proxy.herokuapp.com/" + gravatar + "&d=" + java.net.URLEncoder.encode(adorable, "UTF-8");
+			} catch (UnsupportedEncodingException e) {
+				return gravatar;
+			}
 		} else if (photoUri.contains("googleusercontent")) {
             return photoUri.replaceAll("sz=(\\d+)", "sz="+width);
         } else {
