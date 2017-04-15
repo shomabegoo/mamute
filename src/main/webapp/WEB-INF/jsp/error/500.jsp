@@ -1,3 +1,4 @@
+<%@ taglib prefix="fa" uri="FaUtils" %>
 <c:set var="siteName" value="${t['site.name']}"/>
 <c:set var="title" value="${t['metas.errors.title']}"/>
 <c:set var="genericTitle" value="${t['metas.generic.title'].args(siteName)}"/>
@@ -17,6 +18,6 @@
 		${t['internal_error.text']}
 	</div>
 	<div class="error-code">
-        ۵۰۰
+        fa:toFa(500)
 	</div>
 </c:if>
