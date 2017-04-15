@@ -17,6 +17,6 @@
 		${t['internal_error.text']}
 	</div>
 	<div class="error-code">
-		500
+        ۵۰۰
 	</div>
 </c:if>
