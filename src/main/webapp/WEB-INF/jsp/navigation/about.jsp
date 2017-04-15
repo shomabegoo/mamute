@@ -41,7 +41,7 @@
 			<li>
 				${t['about.reputation.moderate'].args(fa:toFa(MODERATE_EDITS))}
 			</li>
-`			<%--<li>--%>
+			<%--<li>--%>
 				<%--${t['about.reputation.interact_inactive_question'].args(fa:toFa(INACTIVATE_QUESTION))}--%>
 			<%--</li>--%>
 		</ul>
