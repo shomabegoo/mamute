@@ -1,6 +1,6 @@
 <html dir=rtl>
 <body>
-    <div style="direction:rtl; text-align: right, font-family:arial, sans-serif; font-size:12px;">
+    <div style="direction:rtl; text-align: right; font-family:arial, sans-serif; font-size:12px;">
         <img style="margin-bottom:30px;" src="${logoUrl}" />
 
         <p>
