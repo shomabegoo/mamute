@@ -18,6 +18,6 @@
 		${t['internal_error.text']}
 	</div>
 	<div class="error-code">
-        fa:toFa(500)
+        ${fa:toFa(500)}
 	</div>
 </c:if>
