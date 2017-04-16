@@ -55,9 +55,10 @@ public class RegularUserNewsletterJob implements CronTask {
 		return env.supports("feature.newsletter") && !newsletterSentLogs.wasSentThisWeek();
 	}
 
+
 	@Override
 	public String frequency() {
-		return "0 30 10 ? * TUE"; //runs weekly at 10:30
+		return "0 30 10 1 * ?"; //runs monthly at 10:30 more info: http://j.mp/2ognhyI
 	}
 
 
