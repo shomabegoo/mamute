@@ -125,14 +125,14 @@ public class UserTest extends TestCase {
 	public void should_avatar_when_null_photo() throws Exception {
 		User user = user("name", "name@brutal.com");
 		String photo = user.getPhoto(10, 10, "http://www.gravatar.com");
-		assertTrue(photo.startsWith("http://www.gravatar.com"));
+		assertTrue(photo.startsWith("http://shomabegoo-proxy.herokuapp.com/http://www.gravatar.com"));
 	}
 	
 	@Test
 	public void should_have_PG_gravatar_with_robotar_when_null_photo() throws Exception {
 		User user = user("name", "paulo@paulo.com.br");
 		String photo = user.getPhoto(64, 64, "http://www.gravatar.com");
-		assertEquals("http://www.gravatar.com/avatar/620ad6ac2c42fce964bbf2e01e87c04b.png?r=PG&size=64x64&d=http%3A%2F%2Frobohash.org%2Fsize_64x64%2Fset_set1%2Fbgset_any%2F620ad6ac2c42fce964bbf2e01e87c04b.png", photo);
+		assertEquals("http://shomabegoo-proxy.herokuapp.com/http://www.gravatar.com/avatar/620ad6ac2c42fce964bbf2e01e87c04b.png?r=PG&size=64x64&d=https%3A%2F%2Fapi.adorable.io%2Favatars%2F64%2F620ad6ac2c42fce964bbf2e01e87c04b", photo);
 	}
 
 	@Test
