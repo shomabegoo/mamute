@@ -2,8 +2,10 @@ package org.mamute.validators;
 
 import javax.inject.Inject;
 
+import com.ibm.icu.text.DateFormat;
+import com.ibm.icu.util.Calendar;
+import com.ibm.icu.util.ULocale;
 import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
 import org.mamute.controllers.BrutalValidator;
 import org.mamute.dto.UserPersonalInfo;
 import org.mamute.factory.MessageFactory;
@@ -73,10 +75,15 @@ public class UserPersonalInfoValidator {
 		if(!info.getUser().getName().equals(info.getName())){
 			DateTime nameLastTouchedAt = info.getUser().getNameLastTouchedAt();
 			if (nameLastTouchedAt != null && nameLastTouchedAt.isAfter(new DateTime().minusDays(30))) {
+                ULocale locale = new ULocale("fa_IR@calendar=persian");
+                Calendar c = Calendar.getInstance();
+                c.setTime(nameLastTouchedAt.plusDays(30).toDate());
+                DateFormat df = DateFormat.getDateInstance(DateFormat.MEDIUM, locale);
+
 				validator.add(messageFactory.build(
 						"error", 
-						"user.errors.name.min_time", 
-						nameLastTouchedAt.plusDays(30).toString(DateTimeFormat.forPattern(bundle.getMessage("date.joda.simple.pattern")))
+						"user.errors.name.min_time",
+                        df.format(c).replace(" ه\u200D.ش.", "")
 				));
 			}
 		}
